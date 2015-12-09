@@ -22,6 +22,13 @@ public class PDFParser {
         ParsingTools parsingTools = new ParsingTools(text);
         text = parsingTools.toLowerCase();
         System.out.println(text);
+        System.out.println("\n//////////////////\n");
+        System.out.println("\nWithout newline : \n");
+        text = parsingTools.replaceToSpace();
+        System.out.println(text);
+        System.out.println("\n//////////////////\n");
+        System.out.println("\nArray of sentences: \n");
+        parsingTools.textToMap();
     }
 
 }
