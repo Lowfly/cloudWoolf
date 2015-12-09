@@ -1,4 +1,4 @@
-import PDFParser.PDFManager;
+import com.PDFParser.PDFParser;
 
 import java.io.IOException;
 
@@ -10,9 +10,6 @@ public class caller {
 
     public static void main(String[] args) throws IOException {
 
-        PDFManager pdfManager = new PDFManager();
-        pdfManager.setFilePath("/Users/guitte_a/Downloads/test.pdf");
-        System.out.println(pdfManager.ToText());
-
+        PDFParser pdfParser = new PDFParser("/Users/guitte_a/Downloads/test.pdf");
     }
 }
