@@ -34,7 +34,7 @@ public class ParsingTools {
     public String replaceToSpace(String text) {
         String cleanText = null;
 
-        cleanText = text.replaceAll("[\\d[^\\w\\s]]+", " ").replaceAll("[\n\r]+", " ").replaceAll("(\\s{2,})", " ");
+        cleanText = text.replaceAll("[\\d[^\\w\\s.!?]]+", " ").replaceAll("[\n\r]+", " ").replaceAll("(\\s{2,})", " ");
 
         this.text = cleanText;
 
@@ -47,24 +47,20 @@ public class ParsingTools {
 
     public Map textToMap(String text) {
 
-        Map map  = new HashMap<>();
         String cleanText;
 
         String[] sentences = text.split("[\\.\\!\\?]");
-        for (int i=0;i<sentences.length;i++){
-            System.out.println(i);
-            System.out.println(sentences[i]);
+        int nbSentences = 0;
+        for (int i=0; i<sentences.length; i++){
+            nbSentences = i;
         }
 
+        Map<Integer, String> map = new HashMap<Integer, String>(); // I use HashMap because it is the most generic
 
-/*
-        final Map<String, String> m = new HashMap<String, String>();
-        int i = 0;
-        for (String key : sentences)
-            m.put(key, sentences[i++]);
+        for(int i = 0; i < nbSentences; i++) {
+            map.put(i, sentences[i]); //Add each object, os[i], to the map at position str[i]
+        }
 
-        System.out.println(m);
-*/
         return (map);
     }
 

@@ -37,8 +37,8 @@ public class PDFToString {
         pdfStripper = new PDFTextStripper();
         pdDoc = new PDDocument(cosDoc);
         pdDoc.getNumberOfPages();
-        pdfStripper.setStartPage(50);
-        pdfStripper.setEndPage(51);
+        pdfStripper.setStartPage(23);
+        pdfStripper.setEndPage(23);
         // reading text from page 1 to 10
         // if you want to get text from full pdf file use this code
         // pdfStripper.setEndPage(pdDoc.getNumberOfPages());
