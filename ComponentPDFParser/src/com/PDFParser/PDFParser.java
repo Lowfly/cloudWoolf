@@ -1,6 +1,7 @@
 package com.PDFParser;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,29 +11,48 @@ import java.util.Map;
 public class PDFParser {
 
     private String inputText;
-    private Map outputText;
+    private Map outputTextMap;
+    private List outputTextList;
+    private String outputTextStr;
+
 
     public PDFParser(String path) throws IOException {
 
         PDFToString PDFToString = new PDFToString();
         PDFToString.setFilePath(path);
         //System.out.println("\n//////////////////\n");
-        //System.out.println("\nExtracted from PDF : \n");
+        System.out.println("\nExtracted from PDF : \n");
         inputText = PDFToString.ToText();
-        //System.out.println(text);
+        System.out.println(inputText);
         //System.out.println("\n//////////////////\n");
         //System.out.println("\nLowerCase : \n");
         ParsingTools parsingTools = new ParsingTools(inputText);
         inputText = parsingTools.toLowerCase();
-        //System.out.println(text);
+        //System.out.println(inputText);
         //System.out.println("\n//////////////////\n");
         //System.out.println("\nWithout newline : \n");
         inputText = parsingTools.replaceToSpace();
-        //System.out.println(text);
-        //System.out.println("\n//////////////////\n");
-        //System.out.println("\nArray of sentences: \n");
-        outputText = parsingTools.textToMap();
-        System.out.println(outputText);
+        outputTextStr = inputText;
+        //System.out.println(inputText);
+        System.out.println("\n//////////////////\n");
+        System.out.println("\nMap of sentences: \n");
+        outputTextMap = parsingTools.textToMap();
+        System.out.println(outputTextMap);
     }
+
+    public Map getSentencesMap() {
+        return outputTextMap;
+    }
+
+    /**** Todo: Create list ****/
+
+    /*public List getSentencesList() {
+        return outputText;
+    }*/
+
+    public String getSentencesString() {
+        return outputTextStr;
+    }
+
 
 }
