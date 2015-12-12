@@ -37,7 +37,7 @@ Select a file to upload: <br />
 
 <form action="/upload" method="post"
       enctype="multipart/form-data">
-    <input type="file" name="file" size="50" accept="application/pdf"/>
+    <input type="file" name="file" accept="application/pdf"/>
     <br />
     <input type="submit" value="Upload File" />
 </form>
