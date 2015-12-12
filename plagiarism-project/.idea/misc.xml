@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="appengine-java" url="file://$PROJECT_DIR$" />
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
+  <component name="IdProvider" IDEtalkID="C6CBB0EF800A4770A151D9A0B1D5A6F1" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

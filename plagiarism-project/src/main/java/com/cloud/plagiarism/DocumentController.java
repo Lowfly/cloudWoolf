@@ -2,7 +2,6 @@ package com.cloud.plagiarism;
 
 import com.cloud.models.DocumentSchema;
 import com.googlecode.objectify.ObjectifyService;
-import com.sun.javadoc.Doc;
 
 import java.util.UUID;
 
