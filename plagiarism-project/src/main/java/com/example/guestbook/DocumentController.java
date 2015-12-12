@@ -14,14 +14,18 @@ public class DocumentController {
     private DocumentSchema document;
 
 
-    /**** todo : replace by datetype ****/
-    public DocumentController (String date, String content) {
+    /****
+     * todo : replace by datetype
+     ****/
+    public DocumentController(String date, String content) {
         document = new DocumentSchema();
         document.setDocumentStr(content);
         document.setPublicationDate(date);
         document.setDocId(UUID.randomUUID().toString());
-       // document.setDocId();
-    };
+        // document.setDocId();
+    }
+
+    ;
 
     public DocumentSchema getDocument() {
         return document;
@@ -36,17 +40,8 @@ public class DocumentController {
     }
 
     public void downloadDocument(String ID) {
-        //ObjectifyService.ofy()
-        /*ObjectifyService.ofy()
-                .load()
-                .type(DocumentSchema.class) // We want only Greetings
-                .ancestor(theBook)    // Anyone in this book
-                .order("-date")       // Most recent first - date is indexed.
-                .limit(5)             // Only show 5 of them.
-                .list();*/
-
+        DocumentSchema shema = ObjectifyService.ofy().load().type(DocumentSchema.class).id(ID).now();
     }
-
 
 
 }
