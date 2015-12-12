@@ -19,7 +19,6 @@ package com.cloud.plagiarism;
 import com.cloud.models.DocumentSchema;
 import com.cloud.models.SentenceSchema;
 import com.googlecode.objectify.ObjectifyService;
-import com.sun.javadoc.Doc;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
