@@ -1,4 +1,4 @@
-package com.example.guestbook;
+package com.cloud.plagiarism;
 
 import com.cloud.models.DocumentSchema;
 import com.googlecode.objectify.ObjectifyService;
@@ -37,7 +37,7 @@ public class DocumentController {
         ObjectifyService.ofy().save().entity(document).now();
     }
 
-    public DocumentSchema getToStore(String ID) {
+    public DocumentSchema getFromStore(String ID) {
         DocumentSchema shema = ObjectifyService.ofy().load().type(DocumentSchema.class).id(ID).now();
         return (shema);
     }

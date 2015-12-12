@@ -5,8 +5,6 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
 <%-- //[START imports]--%>
-<%@ page import="com.example.guestbook.Greeting" %>
-<%@ page import="com.example.guestbook.Guestbook" %>
 <%@ page import="com.googlecode.objectify.Key" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%-- //[END imports]--%>
@@ -23,81 +21,27 @@
 
 <h1>CLOUD COMPUTING</h1>
 
-<!--<%
-    String guestbookName = request.getParameter("guestbookName");
-    if (guestbookName == null) {
-        guestbookName = "default";
-    }
-    pageContext.setAttribute("guestbookName", guestbookName);
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-        pageContext.setAttribute("user", user);
-%>
 
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-    <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<%
-    } else {
-%>
-<p>Hello!
-    <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-    to include your name with greetings you post.</p>
-<%
-    }
-%>-->
-
-<%-- //[START datastore]--%>
-<!--<%
-    // Create the correct Ancestor key
-      Key<Guestbook> theBook = Key.create(Guestbook.class, guestbookName);
-
-    // Run an ancestor query to ensure we see the most up-to-date
-    // view of the Greetings belonging to the selected Guestbook.
-      List<Greeting> greetings = ObjectifyService.ofy()
-          .load()
-          .type(Greeting.class) // We want only Greetings
-          .ancestor(theBook)    // Anyone in this book
-          .order("-date")       // Most recent first - date is indexed.
-          .limit(5)             // Only show 5 of them.
-          .list();
-
-    if (greetings.isEmpty()) {
-%>
-<p>Guestbook '${fn:escapeXml(guestbookName)}' has no messages.</p>
-<%
-    } else {
-%>
-<p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
-<%
-      // Look at all of our greetings
-        for (Greeting greeting : greetings) {
-            pageContext.setAttribute("greeting_content", greeting.content);
-            String author;
-            if (greeting.author_email == null) {
-                author = "An anonymous person";
-            } else {
-                author = greeting.author_email;
-                String author_id = greeting.author_id;
-                if (user != null && user.getUserId().equals(author_id)) {
-                    author += " (You)";
-                }
-            }
-            pageContext.setAttribute("greeting_user", author);
-%>
-<p><b>${fn:escapeXml(greeting_user)}</b> wrote:</p>
-<blockquote>${fn:escapeXml(greeting_content)}</blockquote>
-<%
-        }
-    }
-%>-->
 
 <!--- TODO : Upadte servlet ----->
-<form action="/sign" method="post">
-    <!-- <div><textarea name="content" rows="3" cols="60"></textarea></div>-->
+
+<h3>File Upload:</h3>
+Select a file to upload: <br />
+
+<!--<form action="/upload" method="post">
     <div><input type="submit" value="Upload file"/></div>
     <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
+</form>-->
+
+
+
+<form action="/upload" method="post"
+      enctype="multipart/form-data">
+    <input type="file" name="file" size="50" accept="application/pdf"/>
+    <br />
+    <input type="submit" value="Upload File" />
 </form>
+
 <%-- //[END datastore]
 <form action="/upload.jsp" method="get">
     <div><input type="text" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/></div>
@@ -107,3 +51,6 @@
 </body>
 </html>
 <%-- //[END all]--%>
+
+
+

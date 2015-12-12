@@ -1,9 +1,7 @@
 package com.cloud.models;
 
-import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Parent;
 
 /**
  * Created by guitte_a on 11/12/15.
@@ -11,10 +9,48 @@ import com.googlecode.objectify.annotation.Parent;
 
 @Entity
 public class SentenceSchema {
-    @Parent private  Key<DocumentSchema> originalDocument;
-    @Id private Long sentId;
+    //@Parent
+    //private  String docId;
+
+    @Id private String Id;
+
+    //private String docId;
+
     private String sentence;
     private Boolean isPlag;
 
+
+    /*public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }*/
+
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String sentId) {
+        this.Id = sentId;
+    }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
+    }
+
+    public Boolean getIsPlag() {
+        return isPlag;
+    }
+
+    public void setIsPlag(Boolean isPlag) {
+        this.isPlag = isPlag;
+    }
 }
 
