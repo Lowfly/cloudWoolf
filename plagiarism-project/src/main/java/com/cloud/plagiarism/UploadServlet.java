@@ -17,14 +17,21 @@
 //[START all]
 package com.cloud.plagiarism;
 
+import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import java.util.List;
+import java.util.Map;
 
 
 public class UploadServlet extends HttpServlet {
+    private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+
 
     // Process the http POST of the form
     @Override
@@ -89,7 +96,16 @@ public class UploadServlet extends HttpServlet {
 
 */
 
-        resp.sendRedirect("/upload.jsp");
+        Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
+        List<BlobKey> blobKeys = blobs.get("file");
+
+        if (blobKeys == null || blobKeys.isEmpty()) {
+            resp.sendRedirect("/");
+        } else {
+            resp.sendRedirect("/parse?blob-key=" + blobKeys.get(0).getKeyString());
+        }
+
+//        resp.sendRedirect("/upload.jsp");
     }
 }
 //[END all]

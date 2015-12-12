@@ -1,16 +1,22 @@
 <%-- //[START all]--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.api.users.UserService" %>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
 <%-- //[START imports]--%>
 <%@ page import="com.googlecode.objectify.Key" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.users.UserService" %>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%-- //[END imports]--%>
 
 <%@ page import="java.util.List" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+%>
 
 <html>
 <head>
@@ -35,9 +41,9 @@ Select a file to upload: <br />
 
 
 
-<form action="/upload" method="post"
+<form action="<%= blobstoreService.createUploadUrl("/upload") %>" method="post"
       enctype="multipart/form-data">
-    <input type="file" name="file" size="50" accept="application/pdf"/>
+    <input type="file" name="file" accept="application/pdf"/>
     <br />
     <input type="submit" value="Upload File" />
 </form>
