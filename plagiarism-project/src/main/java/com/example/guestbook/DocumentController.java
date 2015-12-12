@@ -2,6 +2,7 @@ package com.example.guestbook;
 
 import com.cloud.models.DocumentSchema;
 import com.googlecode.objectify.ObjectifyService;
+import com.sun.javadoc.Doc;
 
 import java.util.UUID;
 
@@ -22,10 +23,7 @@ public class DocumentController {
         document.setDocumentStr(content);
         document.setPublicationDate(date);
         document.setDocId(UUID.randomUUID().toString());
-        // document.setDocId();
-    }
-
-    ;
+    };
 
     public DocumentSchema getDocument() {
         return document;
@@ -35,12 +33,13 @@ public class DocumentController {
         this.document = document;
     }
 
-    public void uploadDocument() {
+    public void putToStore() {
         ObjectifyService.ofy().save().entity(document).now();
     }
 
-    public void downloadDocument(String ID) {
+    public DocumentSchema getToStore(String ID) {
         DocumentSchema shema = ObjectifyService.ofy().load().type(DocumentSchema.class).id(ID).now();
+        return (shema);
     }
 
 

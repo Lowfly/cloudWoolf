@@ -82,8 +82,8 @@ public class SignGuestbookServlet extends HttpServlet {
 
         //System.out.println("document");
 
-        documentController.uploadDocument();
-        documentController.downloadDocument(documentController.getDocument().getDocId());
+        documentController.putToStore();
+        documentController.getToStore(documentController.getDocument().getDocId());
 
         resp.sendRedirect("/upload.jsp");
     }
