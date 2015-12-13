@@ -60,7 +60,7 @@ import java.util.Map;
                 req.setAttribute("debug", db.getAll());
 
                 Analyser analyser = new Analyser(sentences, db);
-                req.setAttribute("result", "Similarity index is: " + analyser.getSimilarityIndex());
+                req.setAttribute("result", "Similarity index is: " + 100 * analyser.getSimilarityIndex() + " % ");
                 db.insertAll(sentences);
                 try {
                     req.getRequestDispatcher("/upload.jsp").forward(req, res);

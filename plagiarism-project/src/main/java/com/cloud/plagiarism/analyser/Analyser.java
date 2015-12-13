@@ -10,7 +10,7 @@ import java.util.List;
 public class Analyser {
 
     private List<String> sentences;
-    private double simIndex;
+    private double simIndex = 0.0;
     private DB db;
     
     public Analyser(DB db) {   
@@ -30,16 +30,18 @@ public class Analyser {
     public double getSimilarityIndex() {
         if( simIndex < 0 )
             simIndex = computeSimilarityIndex();
+        simIndex = (double) Math.round(simIndex * 100) / 100;
         return simIndex;
     }
         
     private double computeSimilarityIndex() {
         int c = 0;
+
         for(String s : sentences) {
             if( db.isPresent(s) )
                 c++;
         }
-        return c / sentences.size();
+        return ((double) c / (double) sentences.size());
     }
 
 }

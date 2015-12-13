@@ -74,7 +74,7 @@
 </nav>
 <div class="container">
     <hr>
-    ${debug}
+    <%--${debug}--%>
     <div>Choose the file to upload</div>
 
     <form action="<%= blobstoreService.createUploadUrl("/upload") %>" method="post" enctype="multipart/form-data">

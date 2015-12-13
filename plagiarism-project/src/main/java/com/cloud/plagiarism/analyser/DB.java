@@ -3,6 +3,7 @@ package com.cloud.plagiarism.analyser;
 import com.cloud.plagiarism.Controllers.SentenceController;
 import com.cloud.plagiarism.Models.SentenceSchema;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,35 +42,17 @@ public class DB {
 
     public boolean isPresent(String s) {
 
-        //List<SentenceSchema> listSentence;
+        List<String> DBContentString = new ArrayList<>();
 
-        //listSentence = getAll();
-       // System.out.println(listSentence);
-        //System.out.println(listSentence.contains("Office of the Privacy Commissioner of Canada"));
-        /* SentenceController sentenceController = new SentenceController();
-        SentenceSchema sentenceSchema = new SentenceSchema();
-        sentenceSchema.setSentence(null);
-        System.out.println("//////////////////////////");
-        System.out.println(s);
-        sentenceSchema = sentenceController.getFromStore(s);*/
-        // System.out.println(sentenceSchema.getSentence());
-        /*if (sentenceSchema.getSentence() == null)
-            System.out.println("No sentence");
-        else
-            System.out.println("*********************PRESENT***********************");
-*/
-
-        /*try {
-           /* ResultSet res = conn.createStatement().executeQuery(
-                    "SELECT content FROM sentences WHERE content='" + s + "'");
-            return (res.next() ? true : false);
-        } catch (Exception e) {
+        for (SentenceSchema tmp : list) {
+            DBContentString.add(tmp.getSentence());
+        }
+        if (DBContentString.contains(s)) {
+            return true;
+        } else {
             return false;
-        }*/
 
-
-
-        return false;
+        }
     }
 
     public void insertAll(List<String> rows) {
