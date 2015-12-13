@@ -37,28 +37,28 @@ public class UploadServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        System.out.println("\n/**** Request ****/\n");
-        System.out.println(req.getParameterMap());
-        System.out.println("\n/**** Upload Document ****/\n");
-        DocumentController documentController = new DocumentController("17/12/94", "Ceci est le content de mon PDF");
-        documentController.putToStore();
-        System.out.println("\n/**** Download Document ****/\n");
-        System.out.println(documentController.getFromStore(documentController.getDocument().getDocId()));
-        System.out.println("\n/**** Upload Sentence ****/\n");
-        SentenceController sentenceController = new SentenceController(documentController.getDocument().getDocId(), "Content1");
-        sentenceController.putToStore();
-        sentenceController.getSentence().setSentence("Content2");
-        sentenceController.putToStore();
-        sentenceController.getSentence().setSentence("Content3");
-        sentenceController.putToStore();
-        sentenceController.getSentence().setSentence("Content4");
-        sentenceController.putToStore();
-        sentenceController.getSentence().setSentence("Content5");
-        sentenceController.putToStore();
-
-
-
-        System.out.println(sentenceController.getFromStore(sentenceController.getSentence().getId()));
+//        System.out.println("\n/**** Request ****/\n");
+//        System.out.println(req.getParameterMap());
+//        System.out.println("\n/**** Upload Document ****/\n");
+//        DocumentController documentController = new DocumentController("17/12/94", "Ceci est le content de mon PDF");
+//        documentController.putToStore();
+//        System.out.println("\n/**** Download Document ****/\n");
+//        System.out.println(documentController.getFromStore(documentController.getDocument().getDocId()));
+//        System.out.println("\n/**** Upload Sentence ****/\n");
+//        SentenceController sentenceController = new SentenceController(documentController.getDocument().getDocId(), "Content1");
+//        sentenceController.putToStore();
+//        sentenceController.getSentence().setSentence("Content2");
+//        sentenceController.putToStore();
+//        sentenceController.getSentence().setSentence("Content3");
+//        sentenceController.putToStore();
+//        sentenceController.getSentence().setSentence("Content4");
+//        sentenceController.putToStore();
+//        sentenceController.getSentence().setSentence("Content5");
+//        sentenceController.putToStore();
+//
+//
+//
+//        System.out.println(sentenceController.getFromStore(sentenceController.getSentence().getId()));
 
         //System.out.println(sentenceController.getAllFromStore(documentController.getDocument().getDocId()));
 
@@ -102,7 +102,7 @@ public class UploadServlet extends HttpServlet {
         if (blobKeys == null || blobKeys.isEmpty()) {
             resp.sendRedirect("/");
         } else {
-            resp.sendRedirect("/parse?blob-key=" + blobKeys.get(0).getKeyString());
+            resp.sendRedirect("/parse?blob-key=" + blobKeys.get(0).getKeyString() + "&encoding=" + req.getParameter("encoding"));
         }
 
 //        resp.sendRedirect("/upload.jsp");

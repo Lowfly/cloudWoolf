@@ -45,6 +45,17 @@ Select a file to upload: <br />
       enctype="multipart/form-data">
     <input type="file" name="file" accept="application/pdf"/>
     <br />
+    Encoding:
+    <select name="encoding">
+        <option value="UTF-8">Default</option>
+        <option value="US-ASCII">US-ASCII</option>
+        <option value="ISO-8859-1">ISO-8859-1</option>
+        <option value="UTF-8">UTF-8</option>
+        <option value="UTF-16BE">UTF-16BE</option>
+        <option value="UTF-16LE">UTF-16LE</option>
+        <option value="UTF-16">UTF-16</option>
+    </select>
+    <br />
     <input type="submit" value="Upload File" />
 </form>
 

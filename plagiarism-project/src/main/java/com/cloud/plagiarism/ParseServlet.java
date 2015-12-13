@@ -18,24 +18,76 @@
 package com.cloud.plagiarism;
 
 import com.cloud.parser.PDFParser;
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.cloud.parser.ParsingTools;
+import com.google.appengine.api.blobstore.*;
+import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.files.FileService;
+import com.google.appengine.api.files.FileServiceFactory;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 public class ParseServlet extends HttpServlet {
     private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    private BlobInfoFactory blobInfoFactory = new BlobInfoFactory();
+
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException {
         BlobKey blobKey = new BlobKey(req.getParameter("blob-key"));
-//        PDFParser pdfParser = new PDFParser(blobKey.getKeyString());
+        BlobInfo blobInfo = blobInfoFactory.loadBlobInfo(blobKey);
+
+        String fileName = blobInfo.getFilename();
+
+        byte[] fileBytes = blobstoreService.fetchData(blobKey, 0, blobInfo.getSize());
+        String fileString = new String(fileBytes, req.getParameter("encoding"));
+
+
+        ParsingTools parsingTools = new ParsingTools(fileString);
+        parsingTools.toLowerCase();
+        parsingTools.replaceToSpace();
+        fileString = parsingTools.getText();
+        String outputTextStr = fileString;
+        List<String> outputTextList = parsingTools.textToList(outputTextStr);
+
+
+
+        DocumentController documentController = new DocumentController(blobInfo.getCreation().toString(), outputTextStr);
+        documentController.putToStore();
+
+        System.out.println(documentController.getFromStore(documentController.getDocument().getDocId()));
+
+        SentenceController sentenceController = new SentenceController(documentController.getDocument().getDocId());
+
+        for(String sentence : outputTextList) {
+            if(sentence.split("\\s+").length > 7){
+                sentenceController.getSentence().setSentence(sentence);
+                sentenceController.putToStore();
+            }
+        }
+
+
+
+
+        System.out.println(sentenceController.getFromStore(sentenceController.getSentence().getId()));
+
+//        InputStream fileIn = new BlobstoreInputStream(blobKey);
+//
+//        File file = new File(fileIn);
+
+//        PDFParser pdfParser = new PDFParser(fileIn);
+//        blobstoreService.serve(blobKey, res);
     }
 
 }

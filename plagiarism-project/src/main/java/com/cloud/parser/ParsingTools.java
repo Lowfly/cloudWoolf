@@ -1,7 +1,6 @@
 package com.cloud.parser;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by guitte_a on 09/12/15.
@@ -34,7 +33,9 @@ public class ParsingTools {
     public String replaceToSpace(String text) {
         String cleanText = null;
 
-        cleanText = text.replaceAll("[\\d[^\\w\\s.!?]]+", " ").replaceAll("[\n\r]+", " ").replaceAll("(\\s{2,})", " ");
+        cleanText = text.replaceAll("[\\d[^\\w\\s.!?]]+", " ")
+                        .replaceAll("[\n\r]+", " ")
+                        .replaceAll("(\\s{2,})", " ");
 
         this.text = cleanText;
 
@@ -62,6 +63,17 @@ public class ParsingTools {
         }
 
         return (map);
+    }
+
+    public List<String> textToList(String text) {
+        List<String> list = Arrays.asList( text.split("[\\.\\!\\?]") );
+        List<String> listNew = new ArrayList<>();
+        for(String sentence : list) {
+            if(sentence.split("\\s+").length > 7){
+                listNew.add(sentence);
+            }
+        }
+        return listNew;
     }
 
 

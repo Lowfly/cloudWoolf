@@ -17,6 +17,13 @@ public class SentenceController {
     /****
      * todo : replace by datetype
      ****/
+    public SentenceController(String docId) {
+        sentence = new SentenceSchema();
+        //sentence.setDocId(content);
+        sentence.setId(UUID.randomUUID().toString());
+
+        //document.setPublicationDate(date);
+    };
     public SentenceController(String docId, String content) {
         sentence = new SentenceSchema();
         sentence.setSentence(content);
