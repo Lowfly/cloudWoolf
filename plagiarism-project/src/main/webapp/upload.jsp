@@ -51,13 +51,13 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">CO846</a>
+            <a class="navbar-brand" href="/">CO846</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,12 +73,11 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <%--<h3>File Upload:</h3>--%>
-    <%--Select a file to upload: <br />--%>
+    <hr>
+    ${debug}
     <div>Choose the file to upload</div>
 
-    <form action="<%= blobstoreService.createUploadUrl("/upload") %>" method="post"
-          enctype="multipart/form-data">
+    <form action="<%= blobstoreService.createUploadUrl("/upload") %>" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <input type="file" name="file"/>
             <%--accept="application/pdf"--%>
@@ -106,7 +105,13 @@
             <button class="btn btn-primary" type="submit">VERIFY</button>
         </div>
     </form>
-
+</div>
+<div class="container">
+    <textarea class="form-control">${fulltext}</textarea>
+    ${list}
+</div>
+<div class="container">
+    <h1>${result}</h1>
 </div>
 <footer>
     <div class="info">

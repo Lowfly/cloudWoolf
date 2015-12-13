@@ -8,32 +8,20 @@
 
     <servlet>
       <servlet-name>upload</servlet-name>
-      <servlet-class>com.cloud.plagiarism.UploadServlet</servlet-class>
+      <servlet-class>com.cloud.plagiarism.Servlets.MainServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>serve</servlet-name>
-        <servlet-class>com.cloud.plagiarism.ServeServlet</servlet-class>
+        <servlet-class>com.cloud.plagiarism.Servlets.ServeServlet</servlet-class>
     </servlet>
-
-    <servlet>
-        <servlet-name>parse</servlet-name>
-        <servlet-class>com.cloud.plagiarism.ParseServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-      <servlet-name>upload</servlet-name>
-      <url-pattern>/upload</url-pattern>
-    </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>serve</servlet-name>
         <url-pattern>/serve</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>parse</servlet-name>
-        <url-pattern>/parse</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
@@ -58,7 +46,7 @@
       <url-pattern>/*</url-pattern>
     </filter-mapping>
     <listener>
-      <listener-class>com.cloud.plagiarism.OfyHelper</listener-class>
+      <listener-class>com.cloud.plagiarism.Helpers.OfyHelper</listener-class>
     </listener>
 <!-- [END Objectify] -->
 </web-app>
