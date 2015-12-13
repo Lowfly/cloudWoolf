@@ -27,10 +27,7 @@ import com.google.appengine.api.files.FileServiceFactory;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -70,14 +67,15 @@ public class ParseServlet extends HttpServlet {
 
         SentenceController sentenceController = new SentenceController(documentController.getDocument().getDocId());
 
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+
         for(String sentence : outputTextList) {
-            if(sentence.split("\\s+").length > 7){
-                sentenceController.getSentence().setSentence(sentence);
-                sentenceController.putToStore();
-            }
+//            req.setAttribute("message", "Sentence: " + sentence + " is plag: " + sentenceController.isPlag(sentence) );
+//            out.println("Sentence: " + sentence + " is plag: " + sentenceController.isPlag(sentence));
+            sentenceController.getSentence().setSentence(sentence);
+            sentenceController.putToStore();
         }
-
-
 
 
         System.out.println(sentenceController.getFromStore(sentenceController.getSentence().getId()));

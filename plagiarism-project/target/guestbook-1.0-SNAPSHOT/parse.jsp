@@ -73,39 +73,9 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <%--<h3>File Upload:</h3>--%>
-    <%--Select a file to upload: <br />--%>
-    <div>Choose the file to upload</div>
 
-    <form action="<%= blobstoreService.createUploadUrl("/upload") %>" method="post"
-          enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="file" name="file"/>
-            <%--accept="application/pdf"--%>
-        </div>
-        <br />
-        Encoding:
-        <select name="encoding">
-            <option value="UTF-8">Default</option>
-            <option value="US-ASCII">US-ASCII</option>
-            <option value="ISO-8859-1">ISO-8859-1</option>
-            <option value="UTF-8">UTF-8</option>
-            <option value="UTF-16BE">UTF-16BE</option>
-            <option value="UTF-16LE">UTF-16LE</option>
-            <option value="UTF-16">UTF-16</option>
-        </select>
-        <br />
-        <div class="checkbox">
-            <label>
-                <input type="checkbox">
-                I accept that my document will be saved for future checks
-                </input>
-            </label>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" type="submit">VERIFY</button>
-        </div>
-    </form>
+    hoping
+    ${message}
 
 </div>
 <footer>
