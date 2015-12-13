@@ -1,5 +1,6 @@
 package com.cloud.plagiarism.Servlets;
 
+import com.cloud.plagiarism.Controllers.SentenceController;
 import com.cloud.plagiarism.analyser.Analyser;
 import com.cloud.plagiarism.analyser.DB;
 import com.cloud.plagiarism.analyser.TextParser;
@@ -46,6 +47,9 @@ import java.util.Map;
                 DB db = new DB();
                 req.setAttribute("fulltext", db.hasError() );
                 sentences = (new TextParser(fileString)).getSentencesList();
+
+                SentenceController tmp = new SentenceController();
+                tmp.getFromStore("toto");
 
                 String ul = "";
                 for(String s : sentences) {

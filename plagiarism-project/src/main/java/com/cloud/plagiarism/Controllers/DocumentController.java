@@ -1,6 +1,6 @@
 package com.cloud.plagiarism.Controllers;
 
-import com.cloud.plagiarism.models.DocumentSchema;
+import com.cloud.plagiarism.Models.DocumentSchema;
 import com.googlecode.objectify.ObjectifyService;
 
 import java.util.UUID;

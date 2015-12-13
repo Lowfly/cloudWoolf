@@ -1,4 +1,4 @@
-package com.cloud.plagiarism.models;
+package com.cloud.plagiarism.Models;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -9,32 +9,17 @@ import com.googlecode.objectify.annotation.Id;
 
 @Entity
 public class SentenceSchema {
-    //@Parent
-    //private  String docId;
 
-    @Id private String Id;
-
-    //private String docId;
-
+    @Id private String id;
     private String sentence;
-    private Boolean isPlag;
-
-
-    /*public String getDocId() {
-        return docId;
-    }
-
-    public void setDocId(String docId) {
-        this.docId = docId;
-    }*/
-
+    //private Boolean isPlag;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String sentId) {
-        this.Id = sentId;
+        this.id = sentId;
     }
 
     public String getSentence() {
@@ -45,12 +30,12 @@ public class SentenceSchema {
         this.sentence = sentence;
     }
 
-    public Boolean getIsPlag() {
-        return isPlag;
-    }
+    //public Boolean getIsPlag() {
+    //    return isPlag;
+    //}
 
-    public void setIsPlag(Boolean isPlag) {
-        this.isPlag = isPlag;
-    }
+    //public void setIsPlag(Boolean isPlag) {
+    //    this.isPlag = isPlag;
+    //}
 }
 

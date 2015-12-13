@@ -17,8 +17,8 @@ public class TextParser {
     }
 
     private void clean() {
-        text.toLowerCase();
-        text.replaceAll("[\\d[^\\w\\s.!?]]+", " ")
+        text = text.toLowerCase();
+        text = text.replaceAll("[\\d[^\\w\\s.!?]]+", " ")
                 .replaceAll("[\n\r]+", " ")
                 .replaceAll("(\\s{2,})", " ");
     }

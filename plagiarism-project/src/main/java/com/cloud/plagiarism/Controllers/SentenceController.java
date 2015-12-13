@@ -1,7 +1,8 @@
 package com.cloud.plagiarism.Controllers;
 
-import com.cloud.plagiarism.models.SentenceSchema;
+import com.cloud.plagiarism.Models.SentenceSchema;
 import com.googlecode.objectify.ObjectifyService;
+import java.util.List;
 
 import java.util.UUID;
 
@@ -17,20 +18,14 @@ public class SentenceController {
     /****
      * todo : replace by datetype
      ****/
-    public SentenceController(String docId) {
+    public SentenceController() {
         sentence = new SentenceSchema();
-        //sentence.setDocId(content);
         sentence.setId(UUID.randomUUID().toString());
-
-        //document.setPublicationDate(date);
     };
-    public SentenceController(String docId, String content) {
+    public SentenceController(String content) {
         sentence = new SentenceSchema();
         sentence.setSentence(content);
-        //sentence.setDocId(content);
         sentence.setId(UUID.randomUUID().toString());
-
-        //document.setPublicationDate(date);
     };
 
     public SentenceSchema getSentence() {
@@ -45,15 +40,20 @@ public class SentenceController {
         ObjectifyService.ofy().save().entity(sentence).now();
     }
 
-    public SentenceSchema getFromStore(String Id) {
-        SentenceSchema shema = ObjectifyService.ofy().load().type(SentenceSchema.class).id(Id).now();
-        return (shema);
+    public SentenceSchema getFromStore(String sentence) {
+
+        System.out.println(sentence);
+        SentenceSchema schema = new SentenceSchema();
+        /*SentenceSchema shema = ObjectifyService.ofy().load().type(SentenceSchema.class).filter("sentence", sentence).first().now();
+        System.out.println(shema);*/
+        ObjectifyService.ofy().delete().type(SentenceSchema.class); // synchronous
+
+        return (schema);
     }
 
-    /*public List<SentenceSchema> getAllFromStore(String docId) {
-        List<SentenceSchema> listSent = ObjectifyService.ofy().load().type(SentenceSchema.class).ancestor(docId).list();
-        return (listSent);
-    }*/
-
+    public List getAllFromStore() {
+        List<SentenceSchema> shemaList = ObjectifyService.ofy().load().type(SentenceSchema.class).list();
+        return (shemaList);
+    }
 
 }

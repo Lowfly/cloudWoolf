@@ -16,8 +16,8 @@
 //[START all]
 package com.cloud.plagiarism.Helpers;
 
-import com.cloud.plagiarism.models.DocumentSchema;
-import com.cloud.plagiarism.models.SentenceSchema;
+import com.cloud.plagiarism.Models.DocumentSchema;
+import com.cloud.plagiarism.Models.SentenceSchema;
 import com.googlecode.objectify.ObjectifyService;
 
 import javax.servlet.ServletContextEvent;
