@@ -1,4 +1,4 @@
-package com.cloud.plagiarism.analyser;
+package com.cloud.plagiarism.Analyser;
 
 import com.cloud.plagiarism.Controllers.SentenceController;
 import com.cloud.plagiarism.Models.SentenceSchema;

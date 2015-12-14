@@ -1,9 +1,9 @@
 package com.cloud.plagiarism.Servlets;
 
 import com.cloud.plagiarism.Controllers.SentenceController;
-import com.cloud.plagiarism.analyser.Analyser;
-import com.cloud.plagiarism.analyser.DB;
-import com.cloud.plagiarism.analyser.TextParser;
+import com.cloud.plagiarism.Analyser.Analyser;
+import com.cloud.plagiarism.Analyser.DB;
+import com.cloud.plagiarism.Analyser.TextParser;
 import com.google.appengine.api.blobstore.*;
 
 import javax.servlet.ServletException;
@@ -60,7 +60,8 @@ import java.util.Map;
                 req.setAttribute("debug", db.getAll());
 
                 Analyser analyser = new Analyser(sentences, db);
-                req.setAttribute("result", "Similarity index is: " + 100 * analyser.getSimilarityIndex() + " % ");
+                req.setAttribute("resvis","visible");
+                req.setAttribute("result", (int)( 100 * analyser.getSimilarityIndex() )+ "%");
                 db.insertAll(sentences);
                 try {
                     req.getRequestDispatcher("/upload.jsp").forward(req, res);

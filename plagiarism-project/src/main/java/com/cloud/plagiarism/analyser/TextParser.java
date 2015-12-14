@@ -1,4 +1,4 @@
-package com.cloud.plagiarism.analyser;
+package com.cloud.plagiarism.Analyser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
